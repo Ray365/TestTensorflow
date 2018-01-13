@@ -1,0 +1,6 @@
+Tensorboard
+
+To shown a Tensorboard, in a command windows, note the last is path which contain grap files
+
+Tensorboard --logdir C:\Users\liumi\PycharmProjects\Test\graphs
+tensorboard --logdir='./grahhs' --port 6006
