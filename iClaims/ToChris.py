@@ -18,7 +18,7 @@ for file in files:
     for row in csv_reader:
         ExportData.append(row)
 
-#print(ExportData)
+# print(ExportData)
 print("Total Export files are: {0}".format(ExportFiles))
 print("Total Export rows are: {0}".format(ExportData.__len__()))
 
