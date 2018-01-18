@@ -17,13 +17,10 @@ for i in range(1, nrows):
     outScopeComID.append(id)
 
 # open sql server connection & cursor
-# server="GAOLAN" #UAT
-server = "10.154.128.185"  # Production
+server="GAOLAN" #UAT
 user = "IWFAdmin"
-# password="3edcVFR$"
 password = "password@123456"
-# dbname="CapitalWorkflowCenter_UAT"
-dbname = "CapitaWorkflowCenter"
+dbname="CapitalWorkflowCenter_UAT"
 con = pymssql.connect(server, user, password, dbname)
 cursor = con.cursor(as_dict=True)
 
