@@ -45,8 +45,8 @@ with tf.Session() as sess:
         sess.run(train_step, feed_dict={xs: x_data, ys: y_data})
         if i % 50 == 0:
             # to see the step improvement
-            #print(sess.run(loss,feed_dict={xs:x_data,ys:y_data}))
-            #if 'lines' in dir():
+            # print(sess.run(loss,feed_dict={xs:x_data,ys:y_data}))
+            # if 'lines' in dir():
             if 'lines' in locals().keys():
                 ax.lines.remove(lines[0])
             prediction_value = sess.run(prediction, feed_dict={xs: x_data})
