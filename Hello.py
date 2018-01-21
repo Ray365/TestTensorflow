@@ -1,3 +1,4 @@
+#2018-1-14 8:20
 import tensorflow as tf
 
 state = tf.Variable(0, name='counter')
