@@ -1,5 +1,6 @@
 import tensorflow as tf
 import numpy as np
+import matplotlib.pyplot as plt
 
 
 def add_layer(inputs, in_size, out_size, activation_function=None):
@@ -27,14 +28,27 @@ prediction = add_layer(l1, 10, 1, activation_function=None)
 
 loss = tf.reduce_mean(tf.reduce_sum(tf.square(ys - prediction),
                                     reduction_indices=[1]))
-train_step=tf.train.GradientDescentOptimizer(0.1).minimize(loss)
+train_step = tf.train.GradientDescentOptimizer(0.1).minimize(loss)
 
-init=tf.global_variables_initializer()
+init = tf.global_variables_initializer()
 with tf.Session() as sess:
     writer = tf.summary.FileWriter("./graphs", sess.graph)
     sess.run(init)
+
+    fig = plt.figure()
+    ax = fig.add_subplot(1, 1, 1)
+    ax.scatter(x_data, y_data)
+    plt.ion()
+    plt.show(block=False)
+
     for i in range(1000):
-        sess.run(train_step,feed_dict={xs:x_data,ys:y_data})
-        if i%50==0:
-            #to see the step improvement
-            print(sess.run(loss,feed_dict={xs:x_data,ys:y_data}))
+        sess.run(train_step, feed_dict={xs: x_data, ys: y_data})
+        if i % 50 == 0:
+            # to see the step improvement
+            #print(sess.run(loss,feed_dict={xs:x_data,ys:y_data}))
+            #if 'lines' in dir():
+            if 'lines' in locals().keys():
+                ax.lines.remove(lines[0])
+            prediction_value = sess.run(prediction, feed_dict={xs: x_data})
+            lines = ax.plot(x_data, prediction_value, 'r-', lw=5)
+            plt.pause(0.5)
