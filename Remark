@@ -1,6 +1,8 @@
 Tensorboard
 
 To shown a Tensorboard, in a command windows, note the last is path which contain grap files
+In CMD, change path to the higher folder which has folder graphs
+Tensorboard --logdir .\graphs
 
 Tensorboard --logdir C:\Users\liumi\PycharmProjects\Test\graphs
 tensorboard --logdir='./grahhs' --port 6006

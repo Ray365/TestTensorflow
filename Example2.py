@@ -1,26 +1,26 @@
 import tensorflow as tf
 import numpy as np
 
-'''
 # create data
 x_data = np.random.rand(1000).astype(np.float32)
 y_data = x_data * 0.1 + 0.3
 
 ### create tensorflow structure start ###
-Weights = tf.Variable(tf.random_uniform([1], -1.0, 1.0))
-biases = tf.Variable(tf.zeros([1]))
+Weights = tf.Variable(tf.random_uniform([1], -1.0, 1.0), name='Weights')
+biases = tf.Variable(tf.zeros([1]), name='biases')
 
 y = Weights * x_data + biases
 
-loss = tf.reduce_mean(tf.square((y - y_data)))
+loss = tf.reduce_mean(tf.square((y - y_data)), name='loss_by_mean')
 
-optimizer = tf.train.GradientDescentOptimizer(0.5)
-train = optimizer.minimize(loss)
+optimizer = tf.train.GradientDescentOptimizer(0.5, name='optimizer_05')
+train = optimizer.minimize(loss, name='train')
 
 init = tf.global_variables_initializer()
 #### create tensorflow structure edn ###
 
 sess = tf.Session()
+writer = tf.summary.FileWriter("./graphs", sess.graph)
 sess.run(init)  # Very important
 
 for step in range(201):
@@ -28,6 +28,7 @@ for step in range(201):
     if step % 20 == 0:
         print(step, sess.run(Weights), sess.run(biases))
 
+'''
 # Variable 1
 matrix1 = tf.constant([[2, 4]])
 matrix2 = tf.constant([[3], [3]])
@@ -53,7 +54,7 @@ with tf.Session() as sess:
     for _ in range(5):
         sess.run(update)
         print(sess.run(state))
-'''
+
 
 #Placeholder input value
 input1=tf.placeholder(tf.float32)
@@ -63,3 +64,5 @@ output=tf.multiply(input1,input2)
 
 with tf.Session() as sess:
     print(sess.run(output, feed_dict={input1:[7],input2:[2]}))
+    
+'''
